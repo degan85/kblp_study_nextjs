@@ -3,65 +3,56 @@
 import { useState } from 'react';
 
 export default function Step2Page() {
-  // 객체를 사용한 상태 관리
+  /* 📝 TODO 1: 객체를 사용한 상태 관리
+   * formData 객체에 다음 필드를 포함:
+   * - name: ''
+   * - email: ''
+   * - age: ''
+   * - gender: ''
+   * - hobby: []  // 배열로 관리
+   * - message: ''
+   * - agree: false
+   */
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    age: '',
-    gender: '',
-    hobby: [],
-    message: '',
-    agree: false
+    // 여기에 초기 상태 객체 작성
   });
 
   const [submittedData, setSubmittedData] = useState(null);
 
-  // 통합 입력 변경 핸들러
+  /* 📝 TODO 2: 통합 입력 변경 핸들러
+   * 1. e.target에서 name, value, type, checked 구조 분해
+   * 2. checkbox 타입 처리:
+   *    - agree 체크박스: checked 값 사용
+   *    - hobby 체크박스: 배열에 추가/제거
+   * 3. 일반 input: value 사용
+   *
+   * 힌트: 스프레드 연산자 {...prev} 사용
+   */
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    if (type === 'checkbox') {
-      if (name === 'agree') {
-        setFormData(prev => ({
-          ...prev,
-          [name]: checked
-        }));
-      } else {
-        // hobby 체크박스 처리
-        setFormData(prev => ({
-          ...prev,
-          hobby: checked
-            ? [...prev.hobby, value]
-            : prev.hobby.filter(h => h !== value)
-        }));
-      }
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
-    }
+    // TODO: type이 'checkbox'인 경우 처리
+    // - name이 'agree'인 경우
+    // - name이 'hobby'인 아닌 경우 (hobby 체크박스)
+
+    // TODO: 일반 input 처리
   };
 
-  // 폼 제출 핸들러
+  /* 📝 TODO 3: 폼 제출 핸들러
+   * 1. e.preventDefault()
+   * 2. submittedData 상태 업데이트
+   * 3. console.log로 제출 데이터 출력
+   */
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmittedData(formData);
-    console.log('제출된 데이터:', formData);
+    // 여기에 코드 작성
   };
 
-  // 폼 초기화 핸들러
+  /* 📝 TODO 4: 폼 초기화 핸들러
+   * - formData를 초기 상태로 리셋
+   * - submittedData를 null로 설정
+   */
   const handleReset = () => {
-    setFormData({
-      name: '',
-      email: '',
-      age: '',
-      gender: '',
-      hobby: [],
-      message: '',
-      agree: false
-    });
-    setSubmittedData(null);
+    // 여기에 코드 작성
   };
 
   return (
@@ -78,19 +69,18 @@ export default function Step2Page() {
         </ul>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      {/* 📝 TODO 5: form의 onSubmit 연결 */}
+      <form>
         {/* 텍스트 입력 */}
         <div className="form-group">
           <label htmlFor="name" className="form-label">
             이름: *
           </label>
+          {/* 📝 TODO 6: input에 name, value, onChange 속성 추가 */}
           <input
             type="text"
             id="name"
-            name="name"
             className="form-input"
-            value={formData.name}
-            onChange={handleInputChange}
             required
             placeholder="홍길동"
           />
@@ -104,10 +94,7 @@ export default function Step2Page() {
           <input
             type="email"
             id="email"
-            name="email"
             className="form-input"
-            value={formData.email}
-            onChange={handleInputChange}
             required
             placeholder="example@email.com"
           />
@@ -121,10 +108,7 @@ export default function Step2Page() {
           <input
             type="number"
             id="age"
-            name="age"
             className="form-input"
-            value={formData.age}
-            onChange={handleInputChange}
             min="1"
             max="120"
             placeholder="20"
@@ -135,36 +119,27 @@ export default function Step2Page() {
         <div className="form-group">
           <label className="form-label">성별:</label>
           <div>
+            {/* 📝 TODO 7: radio 버튼의 name, value, checked, onChange 속성 추가
+             * checked는 formData.gender === 'male' 형태로 비교
+             */}
             <label className="inline-flex items-center mr-4">
               <input
                 type="radio"
-                name="gender"
-                value="male"
                 className="form-radio"
-                checked={formData.gender === 'male'}
-                onChange={handleInputChange}
               />
               남성
             </label>
             <label className="inline-flex items-center mr-4">
               <input
                 type="radio"
-                name="gender"
-                value="female"
                 className="form-radio"
-                checked={formData.gender === 'female'}
-                onChange={handleInputChange}
               />
               여성
             </label>
             <label className="inline-flex items-center">
               <input
                 type="radio"
-                name="gender"
-                value="other"
                 className="form-radio"
-                checked={formData.gender === 'other'}
-                onChange={handleInputChange}
               />
               기타
             </label>
@@ -175,15 +150,15 @@ export default function Step2Page() {
         <div className="form-group">
           <label className="form-label">취미:</label>
           <div>
+            {/* 📝 TODO 8: hobby 체크박스 처리
+             * checked는 formData.hobby.includes(hobbyOption) 사용
+             */}
             {['독서', '운동', '영화', '게임', '요리'].map(hobbyOption => (
               <label key={hobbyOption} className="inline-flex items-center mr-4">
                 <input
                   type="checkbox"
                   name="hobby"
-                  value={hobbyOption}
                   className="form-checkbox"
-                  checked={formData.hobby.includes(hobbyOption)}
-                  onChange={handleInputChange}
                 />
                 {hobbyOption}
               </label>
@@ -198,10 +173,7 @@ export default function Step2Page() {
           </label>
           <textarea
             id="message"
-            name="message"
             className="form-textarea"
-            value={formData.message}
-            onChange={handleInputChange}
             rows="4"
             placeholder="자유롭게 작성해주세요..."
           />
@@ -212,10 +184,7 @@ export default function Step2Page() {
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              name="agree"
               className="form-checkbox"
-              checked={formData.agree}
-              onChange={handleInputChange}
             />
             개인정보 수집 및 이용에 동의합니다
           </label>
@@ -225,7 +194,7 @@ export default function Step2Page() {
           <button type="submit" className="btn btn-primary">
             제출
           </button>
-          <button type="button" onClick={handleReset} className="btn btn-secondary">
+          <button type="button" className="btn btn-secondary">
             초기화
           </button>
         </div>
@@ -240,14 +209,7 @@ export default function Step2Page() {
       </div>
 
       {/* 제출된 데이터 표시 */}
-      {submittedData && (
-        <div className="success-message">
-          <h3>제출 완료!</h3>
-          <div className="data-content mt-2">
-            <pre>{JSON.stringify(submittedData, null, 2)}</pre>
-          </div>
-        </div>
-      )}
+      {/* 📝 TODO 9: submittedData가 있을 때만 표시 */}
 
       {/* 코드 예시 */}
       <div className="code-block">
