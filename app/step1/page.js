@@ -12,6 +12,7 @@ export default function Step1Page() {
    */
 
   // 여기에 useState 코드 작성
+  const [name, setName] = useState('');
 
 
   /* 📝 TODO 2: 폼 제출 핸들러
@@ -20,7 +21,8 @@ export default function Step1Page() {
    * 3. console.log로 제출된 이름 출력
    */
   const handleSubmit = (e) => {
-    // 여기에 코드 작성
+    e.preventDefault();
+    console.log(name);
   };
 
   /* 📝 TODO 3: 입력 변경 핸들러
@@ -28,13 +30,14 @@ export default function Step1Page() {
    */
   const handleChange = (e) => {
     // 여기에 코드 작성
+    setName(e.target.value);
   };
 
   /* 📝 TODO 4: 초기화 핸들러
    * - name과 submittedName을 빈 문자열로 초기화
    */
   const handleReset = () => {
-    // 여기에 코드 작성
+    setName('');
   };
 
   return (
@@ -51,22 +54,23 @@ export default function Step1Page() {
         </ul>
       </div>
 
-      {/* 📝 TODO 5: form의 onSubmit 속성 연결 */}
-      <form {/* onSubmit 속성 추가 */}>
+      {/* 📝 TODO 5: form의 onSubmit 속성 연결
+          힌트: onSubmit={handleSubmit} */}
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="name" className="form-label mt-10">
             이름을 입력하세요:
           </label>
           {/* 📝 TODO 6: input의 value와 onChange 속성 연결
-           * value={상태명}
-           * onChange={핸들러함수}
+           * 힌트: value={name} onChange={handleChange}
            */}
           <input
             type="text"
             id="name"
+            name="name"
+            value={name}
+            onChange={handleChange}
             className="form-input"
-            {/* value 속성 추가 */}
-            {/* onChange 속성 추가 */}
             placeholder="예: 홍길동"
           />
         </div>
@@ -75,8 +79,9 @@ export default function Step1Page() {
           <button type="submit" className="btn btn-primary">
             제출
           </button>
-          {/* 📝 TODO 7: 초기화 버튼의 onClick 속성 연결 */}
-          <button type="button" {/* onClick 속성 추가 */} className="btn btn-secondary">
+          {/* 📝 TODO 7: 초기화 버튼의 onClick 속성 연결
+              힌트: onClick={handleReset} */}
+          <button type="button" className="btn btn-secondary" onClick={handleReset}>
             초기화
           </button>
         </div>
@@ -86,14 +91,16 @@ export default function Step1Page() {
       <div className="data-display">
         <h3 className="data-title">현재 입력 값:</h3>
         <div className="data-content">
-          {/* 📝 TODO 8: name 상태 표시 - 값이 없으면 '(입력 대기중...)' 표시 */}
-          {/* 여기에 코드 작성 */}
+          {/* 📝 TODO 8: name 상태 표시 - 값이 없으면 '(입력 대기중...)' 표시
+              힌트: {name || '(입력 대기중...)'} */}
+          {name || '(입력 대기중...)'}
         </div>
       </div>
 
-      {/* 제출된 값 표시 */}
-      {/* 📝 TODO 9: submittedName이 있을 때만 표시 (조건부 렌더링) */}
-      {/* submittedName && (...) 형태로 작성 */}
+      {/* 📝 TODO 9: submittedName이 있을 때만 표시 (조건부 렌더링)
+          힌트: {submittedName && (<div>...</div>)} 형태로 작성 */}
+
+      {/* 제출 성공 메시지는 여기에 추가하세요 */}
 
       {/* 코드 예시 */}
       <div className="code-block">
