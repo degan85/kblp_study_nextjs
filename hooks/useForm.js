@@ -8,6 +8,9 @@ export function useForm(initialValues) {
    * - touched: 필드 터치 여부
    */
   // 여기에 useState 코드 작성
+  const [values, setValues] = useState(initialValues);
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
 
 
   /* 📝 TODO 2: 입력 값 변경 핸들러
@@ -17,6 +20,21 @@ export function useForm(initialValues) {
    */
   const handleChange = (e) => {
     // 여기에 코드 작성
+    const { name, value, type, checked } = e.target;
+    const fieldValue = type === 'checkbox' ? checked : value;
+
+    setValues(prev => ({
+      ...prev,
+      [name]: fieldValue
+    }));
+
+    // 에러 초기화
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   /* 📝 TODO 3: 필드 블러(포커스 아웃) 핸들러
@@ -24,6 +42,11 @@ export function useForm(initialValues) {
    */
   const handleBlur = (e) => {
     // 여기에 코드 작성
+    const { name } = e.target;
+    setTouched(prev => ({
+      ...prev,
+      [name]: true
+    }));
   };
 
   /* 📝 TODO 4: 폼 리셋
@@ -31,6 +54,9 @@ export function useForm(initialValues) {
    */
   const resetForm = () => {
     // 여기에 코드 작성
+    setValues(initialValues);
+    setErrors({});
+    setTouched({});
   };
 
   /* 📝 TODO 5: 특정 필드 값 설정
@@ -38,16 +64,25 @@ export function useForm(initialValues) {
    */
   const setFieldValue = (name, value) => {
     // 여기에 코드 작성
+    setValues(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   /* 📝 TODO 6: 특정 필드 에러 설정 */
   const setFieldError = (name, error) => {
     // 여기에 코드 작성
+    setErrors(prev => ({
+      ...prev,
+      [name]: error
+    }));
   };
 
   /* 📝 TODO 7: 전체 값 설정 */
   const setAllValues = (newValues) => {
     // 여기에 코드 작성
+    setValues(newValues);
   };
 
   // 반환할 객체
