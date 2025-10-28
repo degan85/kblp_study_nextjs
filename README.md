@@ -1,37 +1,71 @@
-# React Form Tutorial with Next.js
+# React 기초 학습 with Next.js
 
-React Hook을 사용한 폼 핸들링을 단계별로 학습할 수 있는 튜토리얼 프로젝트입니다.
+React Hook, 폼 핸들링, 조건부 렌더링, 리스트 렌더링을 단계별로 학습할 수 있는 튜토리얼 프로젝트입니다.
 
 ## 프로젝트 소개
 
-이 프로젝트는 React의 기초부터 고급 폼 처리까지 5단계로 구성된 학습 자료입니다. 데이터베이스 대신 파일 시스템을 사용하여 폼 데이터를 저장하고 불러올 수 있습니다.
+이 프로젝트는 React의 기초부터 고급 개념까지 체계적으로 구성된 학습 자료입니다. Form 수업과 렌더링 수업으로 나뉘어 있으며, 각각 단계별로 난이도가 증가합니다.
 
 ## 학습 단계
 
-### Step 1: 기본 폼 처리
+### 📝 Form 수업
+
+#### Step 1: 기본 폼 처리
 - useState를 사용한 상태 관리
 - 단일 입력 필드 처리
 - 기본 submit 핸들링
 
-### Step 2: 다양한 Input 타입
+#### Step 2: 다양한 Input 타입
 - 텍스트, 이메일, 라디오, 체크박스, 텍스트영역
 - 객체를 사용한 복수 상태 관리
 - 여러 입력 타입 동시 처리
 
-### Step 3: Custom Hook 활용
+#### Step 3: Custom Hook 활용
 - useForm 커스텀 훅 사용
 - 코드 재사용성 향상
 - 관심사의 분리
 
-### Step 4: 파일 저장/불러오기
+#### Step 4: 파일 저장/불러오기
 - Next.js API Routes 활용
 - 파일 시스템 기반 CRUD
 - 저장된 데이터 관리
 
-### Step 5: 고급 Validation
+#### Step 5: 고급 Validation
 - react-hook-form 라이브러리 사용
 - Zod 스키마 기반 유효성 검사
 - 실시간 에러 피드백
+
+### 🎨 렌더링
+
+#### Render 1: 기본 조건부 렌더링
+- if/else 조건문
+- 삼항 연산자 (? :)
+- 논리 AND 연산자 (&&)
+- 로그인/로그아웃 UI 전환
+
+#### Render 2: 복잡한 조건부 렌더링
+- switch/case 패턴
+- 다중 조건 처리
+- 역할 기반 UI (관리자/일반 사용자)
+- 조건부 스타일링
+
+#### Render 3: 기본 리스트 렌더링
+- map() 함수 사용법
+- key prop의 중요성
+- 배열 데이터 렌더링
+- 고유 ID 관리
+
+#### Render 4: 동적 리스트
+- 리스트 아이템 추가/삭제
+- filter()를 활용한 검색/필터링
+- sort()를 활용한 정렬
+- 배열 불변성 유지
+
+#### Render 5: Todo App 종합 실습
+- 조건부 렌더링 + 리스트 결합
+- 완료 상태 토글
+- 필터링 (전체/완료/미완료)
+- 로컬 스토리지 활용
 
 ## Git 브랜치 구조
 
@@ -46,9 +80,9 @@ React Hook을 사용한 폼 핸들링을 단계별로 학습할 수 있는 튜�
 - 정답 확인용 브랜치
 
 ### 📝 example 브랜치
-- TODO 주석이 포함된 학습용 템플릿
-- 학생들이 직접 코드를 작성하며 학습
-- 각 페이지의 "핵심 코드" 섹션을 참고하여 구현
+- main과 동일한 완성 코드 포함
+- 각 페이지의 "핵심 코드" 섹션을 참고하여 학습
+- 모든 예제가 동작하는 상태로 제공
 
 ## 사용 방법
 
@@ -60,12 +94,9 @@ cd kblp_study_nextjs
 npm install
 ```
 
-### 2. 학습 시작 (example 브랜치)
+### 2. 학습 시작
 
 ```bash
-# example 브랜치로 전환
-git checkout example
-
 # 개발 서버 실행
 npm run dev
 ```
@@ -74,46 +105,34 @@ npm run dev
 
 ### 3. 학습 진행 방법
 
-1. 각 Step 페이지의 하단 "핵심 코드" 섹션 확인
-2. TODO 주석을 참고하여 코드 작성
-3. 개발 서버에서 실시간으로 결과 확인
-4. 막히는 부분이 있으면 힌트 주석 참고
-
-### 4. 정답 확인
-
-특정 파일의 정답을 보고 싶을 때:
-
-```bash
-# 특정 파일의 차이점 확인
-git diff solution app/step1/page.js
-
-# solution 브랜치로 전환하여 확인
-git checkout solution
-```
-
-다시 학습으로 돌아가기:
-```bash
-git checkout example
-```
+1. 메인 페이지에서 학습할 단계 선택
+2. 각 페이지에서 실제 동작하는 예제 확인
+3. 하단의 "핵심 코드" 섹션에서 코드 패턴 학습
+4. 직접 코드를 수정하며 실험해보기
 
 ## 프로젝트 구조
 
 ```
 kblp_nextjs/
 ├── app/
-│   ├── page.js           # 메인 페이지 (커리큘럼)
-│   ├── step1/page.js     # Step 1: 기본 폼
-│   ├── step2/page.js     # Step 2: 다양한 Input
-│   ├── step3/page.js     # Step 3: Custom Hook
-│   ├── step4/page.js     # Step 4: 파일 저장/불러오기
-│   ├── step5/page.js     # Step 5: 고급 Validation
-│   └── api/forms/route.js # API 엔드포인트
+│   ├── page.js             # 메인 페이지 (커리큘럼)
+│   ├── step1/page.js       # Step 1: 기본 폼
+│   ├── step2/page.js       # Step 2: 다양한 Input
+│   ├── step3/page.js       # Step 3: Custom Hook
+│   ├── step4/page.js       # Step 4: 파일 저장/불러오기
+│   ├── step5/page.js       # Step 5: 고급 Validation
+│   ├── render1/page.js     # Render 1: 기본 조건부 렌더링
+│   ├── render2/page.js     # Render 2: 복잡한 조건부 렌더링
+│   ├── render3/page.js     # Render 3: 기본 리스트 렌더링
+│   ├── render4/page.js     # Render 4: 동적 리스트
+│   ├── render5/page.js     # Render 5: Todo App
+│   └── api/forms/route.js  # API 엔드포인트
 ├── components/
-│   └── Navigation.js     # 네비게이션 컴포넌트
+│   └── Navigation.js       # 그룹화된 네비게이션
 ├── hooks/
-│   └── useForm.js        # 커스텀 훅
+│   └── useForm.js          # 커스텀 폼 훅
 └── data/
-    └── forms.json        # 폼 데이터 저장 파일
+    └── forms.json          # 폼 데이터 저장 파일
 ```
 
 ## 기술 스택
@@ -128,6 +147,7 @@ kblp_nextjs/
 
 이 튜토리얼을 완료하면 다음을 학습할 수 있습니다:
 
+### Form 수업
 - ✅ React의 상태 관리 (useState)
 - ✅ 폼 이벤트 핸들링 (onChange, onSubmit, onBlur)
 - ✅ 커스텀 Hook 작성 및 활용
@@ -135,6 +155,14 @@ kblp_nextjs/
 - ✅ 파일 시스템 기반 데이터 저장
 - ✅ react-hook-form과 Zod를 활용한 유효성 검사
 - ✅ 에러 처리 및 사용자 피드백
+
+### 렌더링
+- ✅ 조건부 렌더링 (if/else, 삼항 연산자, &&)
+- ✅ 복잡한 조건 처리 (switch, 다중 조건)
+- ✅ 리스트 렌더링 (map, key prop)
+- ✅ 동적 리스트 관리 (추가/삭제/필터링/정렬)
+- ✅ 배열 불변성 유지
+- ✅ 로컬 스토리지 활용
 
 ## 개발 환경
 
