@@ -134,8 +134,28 @@
   @apply text-2xl font-bold mb-4 text-primary;
 }
 
+.nav-home {
+  @apply mb-4;
+}
+
+.nav-group {
+  @apply mb-4;
+}
+
+.nav-group-title {
+  @apply w-full text-left px-4 py-2 rounded-lg bg-secondary/50 text-secondary-foreground hover:bg-secondary transition-all duration-200 font-semibold flex justify-between items-center;
+}
+
+.nav-arrow {
+  @apply transition-transform duration-200 text-xs;
+}
+
+.nav-arrow.open {
+  @apply rotate-180;
+}
+
 .nav-menu {
-  @apply flex flex-wrap gap-4 list-none p-0 m-0;
+  @apply flex flex-wrap gap-2 list-none p-0 m-0 mt-2 ml-4;
 }
 
 .nav-link {
